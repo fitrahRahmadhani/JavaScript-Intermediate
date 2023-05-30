@@ -10,3 +10,8 @@ for(let i = 0; i < inventory.length; i++){
     inventory[i].push(stokTersisa);
 }
 console.log(inventory);
+
+// Menggunakan forEach()
+inventory.forEach((dataInventory) => {
+    inventory.push("Ini contoh menggunakan foreEach")
+})
