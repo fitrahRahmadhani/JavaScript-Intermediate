@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Local Storage</title>
+
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            display: flex;
+            flex-direction: row;
+        }
+        form input{
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form action="">
+            <input type="text" id="searchKey" name="searchKey" placeholder="Search Something"><br>
+            <input type="submit" value="Search" onclick="onSearch()">
+        </form>
+        <h4>Riwayat Pencarian</h4>
+        <div id="search-history"></div>
+        <button onclick="clearSearchHistory()" style="margin-top: 20px;">
+            Hapus Riwayat
+        </button>
+    </main>
+
+
+    <script>
+        let searchList = JSON.parse(localStorage.getItem('searchKey')) || []; // jika searchKey bernilai undefined, maka set searchList sebagai empty array
+
+        function onSearch(){
+            let searchValue = document.getElementById('searchKey').value;
+            searchList.push(searchValue);
+
+            let searchListString = JSON.stringify(searchList); // Mengubah array menjadi string
+            localStorage.setItem('searchKey', searchListString); // Menyimpan pencarian dengan key 'searchKey'
+        }
+
+        function getSearchHistory() {
+            var list = '';
+            for (var i = 0; i < searchList.length; i++) {
+                list += `<div>${searchList[i]}</div>`;
+            }
+            document.getElementById('search-history').innerHTML = list;
+        }
+
+        // memanggil fungsi getSearchhistory
+        if(searchList.length > 0){
+            getSearchHistory();
+        }
+
+        function clearSearchHistory(){
+            localStorage.removeItem("searchKey");
+            document.getElementById("search-history").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
