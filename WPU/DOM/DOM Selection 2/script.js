@@ -1,19 +1,11 @@
-// DOM Manipulation
+// DOM Selection
 
-const sectionA = document.querySelector('section#b');
-sectionA.innerHTML = '<h2>Hello World</h2>';
-
-const judul = document.getElementById('judul');
-judul.style.color = 'white';
-judul.style.backgroundColor = 'black';
+// document.querySelector() -> first element
+const p = document.querySelector('#b p');
+p.style.backgroundColor = 'red';
+p.innerHTML = 'Ini diubah menggunakan Javascript';
 
 
-// Menambahkan attribut baru
-judul.setAttribute('name', 'tukijo');
-
-// Menghapus attribut
-const a = document.querySelector('a');
-a.removeAttribute('href');
-
-const c = document.querySelectorAll('section#c ul li');
-c[0].classList.add('bg-orange');
+// document.querySelectorAll()
+const paragraph = document.querySelectorAll('li');
+paragraph[1].style.backgroundColor = 'orange';
